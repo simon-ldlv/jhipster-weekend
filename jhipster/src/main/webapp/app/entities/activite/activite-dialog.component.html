@@ -1,0 +1,65 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myActiviteLabel" jhiTranslate="projetWeekendApp.activite.home.createOrEditLabel">Create or edit a Activite</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!activite.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="activite.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="activite.name"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.collectif" for="field_collectif">Collectif</label>
+            <input type="checkbox" class="form-control" name="collectif" id="field_collectif"
+                [(ngModel)]="activite.collectif"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.ensoleille" for="field_ensoleille">Ensoleille</label>
+            <input type="checkbox" class="form-control" name="ensoleille" id="field_ensoleille"
+                [(ngModel)]="activite.ensoleille"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.nuageux" for="field_nuageux">Nuageux</label>
+            <input type="checkbox" class="form-control" name="nuageux" id="field_nuageux"
+                [(ngModel)]="activite.nuageux"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.enneige" for="field_enneige">Enneige</label>
+            <input type="checkbox" class="form-control" name="enneige" id="field_enneige"
+                [(ngModel)]="activite.enneige"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.pluvieux" for="field_pluvieux">Pluvieux</label>
+            <input type="checkbox" class="form-control" name="pluvieux" id="field_pluvieux"
+                [(ngModel)]="activite.pluvieux"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.celsiusMin" for="field_celsiusMin">Celsius Min</label>
+            <input type="number" class="form-control" name="celsiusMin" id="field_celsiusMin"
+                [(ngModel)]="activite.celsiusMin"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.celsiusMax" for="field_celsiusMax">Celsius Max</label>
+            <input type="number" class="form-control" name="celsiusMax" id="field_celsiusMax"
+                [(ngModel)]="activite.celsiusMax"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

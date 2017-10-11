@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "villes",
+            "otherEntityName": "ville",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "activites"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "collectif",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "ensoleille",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "nuageux",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "enneige",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "pluvieux",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "celsiusMin",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "celsiusMax",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20171010231820",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "activite",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

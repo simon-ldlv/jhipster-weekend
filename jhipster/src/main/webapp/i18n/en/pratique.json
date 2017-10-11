@@ -1,0 +1,22 @@
+{
+    "projetWeekendApp": {
+        "pratique" : {
+            "home": {
+                "title": "Pratiques",
+                "createLabel": "Create a new Pratique",
+                "createOrEditLabel": "Create or edit a Pratique"
+            },
+            "created": "A new Pratique is created with identifier {{ param }}",
+            "updated": "A Pratique is updated with identifier {{ param }}",
+            "deleted": "A Pratique is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pratique {{ id }}?"
+            },
+            "detail": {
+                "title": "Pratique"
+            },
+            "activite": "Activite",
+            "owner": "Owner"
+        }
+    }
+}

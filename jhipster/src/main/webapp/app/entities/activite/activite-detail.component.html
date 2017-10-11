@@ -1,0 +1,53 @@
+
+<div *ngIf="activite">
+    <h2><span jhiTranslate="projetWeekendApp.activite.detail.title">Activite</span> {{activite.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="projetWeekendApp.activite.name">Name</span></dt>
+        <dd>
+            <span>{{activite.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="projetWeekendApp.activite.collectif">Collectif</span></dt>
+        <dd>
+            <span>{{activite.collectif}}</span>
+        </dd>
+        <dt><span jhiTranslate="projetWeekendApp.activite.ensoleille">Ensoleille</span></dt>
+        <dd>
+            <span>{{activite.ensoleille}}</span>
+        </dd>
+        <dt><span jhiTranslate="projetWeekendApp.activite.nuageux">Nuageux</span></dt>
+        <dd>
+            <span>{{activite.nuageux}}</span>
+        </dd>
+        <dt><span jhiTranslate="projetWeekendApp.activite.enneige">Enneige</span></dt>
+        <dd>
+            <span>{{activite.enneige}}</span>
+        </dd>
+        <dt><span jhiTranslate="projetWeekendApp.activite.pluvieux">Pluvieux</span></dt>
+        <dd>
+            <span>{{activite.pluvieux}}</span>
+        </dd>
+        <dt><span jhiTranslate="projetWeekendApp.activite.celsiusMin">Celsius Min</span></dt>
+        <dd>
+            <span>{{activite.celsiusMin}}</span>
+        </dd>
+        <dt><span jhiTranslate="projetWeekendApp.activite.celsiusMax">Celsius Max</span></dt>
+        <dd>
+            <span>{{activite.celsiusMax}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'activite/'+ activite.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "activite",
+            "otherEntityName": "activite",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "owner",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "pratique"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20171010233210",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "pratique",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

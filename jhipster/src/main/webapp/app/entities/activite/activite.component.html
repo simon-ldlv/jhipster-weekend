@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span jhiTranslate="projetWeekendApp.activite.home.title">Activites</span>
+        <button class="btn btn-primary float-right jh-create-entity create-activite" [routerLink]="['/', { outlets: { popup: ['activite-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="projetWeekendApp.activite.home.createLabel">
+            Create new Activite
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="activites">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="projetWeekendApp.activite.name">Name</span></th>
+            <th><span jhiTranslate="projetWeekendApp.activite.collectif">Collectif</span></th>
+            <th><span jhiTranslate="projetWeekendApp.activite.ensoleille">Ensoleille</span></th>
+            <th><span jhiTranslate="projetWeekendApp.activite.nuageux">Nuageux</span></th>
+            <th><span jhiTranslate="projetWeekendApp.activite.enneige">Enneige</span></th>
+            <th><span jhiTranslate="projetWeekendApp.activite.pluvieux">Pluvieux</span></th>
+            <th><span jhiTranslate="projetWeekendApp.activite.celsiusMin">Celsius Min</span></th>
+            <th><span jhiTranslate="projetWeekendApp.activite.celsiusMax">Celsius Max</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let activite of activites ;trackBy: trackId">
+                <td><a [routerLink]="['../activite', activite.id ]">{{activite.id}}</a></td>
+                <td>{{activite.name}}</td>
+                <td>{{activite.collectif}}</td>
+                <td>{{activite.ensoleille}}</td>
+                <td>{{activite.nuageux}}</td>
+                <td>{{activite.enneige}}</td>
+                <td>{{activite.pluvieux}}</td>
+                <td>{{activite.celsiusMin}}</td>
+                <td>{{activite.celsiusMax}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../activite', activite.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'activite/'+ activite.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'activite/'+ activite.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
