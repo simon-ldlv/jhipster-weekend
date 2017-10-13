@@ -11,7 +11,7 @@ import java.util.Objects;
  * A Pratique.
  */
 @Entity
-@Table(name = "pratique")
+@Table(name = "pratique")	
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Pratique implements Serializable {
 
@@ -22,9 +22,11 @@ public class Pratique implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "activite_id")
     private Activite activite;
 
     @ManyToOne
+    @JoinColumn(name = "owner_id")
     private User owner;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

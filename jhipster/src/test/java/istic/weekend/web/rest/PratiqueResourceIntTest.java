@@ -4,6 +4,7 @@ import istic.weekend.ProjetWeekendApp;
 
 import istic.weekend.domain.Pratique;
 import istic.weekend.repository.PratiqueRepository;
+import istic.weekend.repository.UserRepository;
 import istic.weekend.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -41,6 +42,9 @@ public class PratiqueResourceIntTest {
     private PratiqueRepository pratiqueRepository;
 
     @Autowired
+    private UserRepository userRepository;
+    
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -59,7 +63,7 @@ public class PratiqueResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PratiqueResource pratiqueResource = new PratiqueResource(pratiqueRepository);
+        final PratiqueResource pratiqueResource = new PratiqueResource(pratiqueRepository, userRepository);
         this.restPratiqueMockMvc = MockMvcBuilders.standaloneSetup(pratiqueResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
