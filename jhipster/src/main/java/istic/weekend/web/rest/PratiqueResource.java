@@ -62,13 +62,21 @@ public class PratiqueResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new pratique cannot already have an ID")).body(null);
         }
         
+        Optional<User> theUserOp = userRepository.findOneByLogin(principal.getName());
+        User myUser = theUserOp.get();
+        
+        // Si la pratique n'a pas d'owner alors l'owner par defaut est l'user connecté
+        if(pratique.getOwner()==null) {
+        	pratique.setOwner(myUser);
+        }
+        
+        // On verifie que la pratique de ce sport n'est pas deja existante pour cette utilisateur
         if(pratiqueRepository.findOneByActiviteByOwner(pratique.getActivite(), pratique.getOwner()) == null){
         	
 	        if(SecurityUtils.isCurrentUserInRole("ROLE_ADMIN")) {
 	            result = pratiqueRepository.save(pratique);
 	    	} else { // if role is ROLE_USER
-	            Optional<User> theUserOp = userRepository.findOneByLogin(principal.getName());
-	            User myUser = theUserOp.get();
+	
 	            if(myUser.equals(pratique.getOwner())) {
 	                result = pratiqueRepository.save(pratique);
 	            }

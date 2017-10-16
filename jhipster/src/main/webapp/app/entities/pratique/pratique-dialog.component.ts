@@ -13,6 +13,9 @@ import { Activite, ActiviteService } from '../activite';
 import { User, UserService } from '../../shared';
 import { ResponseWrapper } from '../../shared';
 
+import { Account, LoginModalService, Principal } from '../../shared';
+
+
 @Component({
     selector: 'jhi-pratique-dialog',
     templateUrl: './pratique-dialog.component.html'
@@ -22,6 +25,7 @@ export class PratiqueDialogComponent implements OnInit {
     pratique: Pratique;
     isSaving: boolean;
 
+    account: Account;
     activites: Activite[];
 
     users: User[];
@@ -32,7 +36,9 @@ export class PratiqueDialogComponent implements OnInit {
         private pratiqueService: PratiqueService,
         private activiteService: ActiviteService,
         private userService: UserService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private principal: Principal,
+        private loginModalService: LoginModalService
     ) {
     }
 
@@ -42,6 +48,10 @@ export class PratiqueDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => { this.activites = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.userService.query()
             .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.principal.identity().then((account) => {
+            this.account = account;
+        });
+   
     }
 
     clear() {

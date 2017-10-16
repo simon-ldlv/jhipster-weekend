@@ -20,7 +20,7 @@
                 <option [ngValue]="activiteOption.id === pratique.activite?.id ? pratique.activite : activiteOption" *ngFor="let activiteOption of activites; trackBy: trackActiviteById">{{activiteOption.name}}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="form-group">
             <label class="form-control-label" jhiTranslate="projetWeekendApp.pratique.owner" for="field_owner">Owner</label>
             <select class="form-control" id="field_owner" name="owner" [(ngModel)]="pratique.owner" >
                 <option [ngValue]="null"></option>
