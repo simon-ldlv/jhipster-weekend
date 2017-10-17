@@ -3,6 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ProjetWeekendVilleModule } from './ville/ville.module';
 import { ProjetWeekendActiviteModule } from './activite/activite.module';
 import { ProjetWeekendPratiqueModule } from './pratique/pratique.module';
+import { ProjetWeekendMeteoModule } from './meteo/meteo.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -10,6 +11,7 @@ import { ProjetWeekendPratiqueModule } from './pratique/pratique.module';
         ProjetWeekendVilleModule,
         ProjetWeekendActiviteModule,
         ProjetWeekendPratiqueModule,
+        ProjetWeekendMeteoModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

@@ -15,32 +15,31 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Ville.
+        Added the entity Meteo.
     -->
-    <changeSet id="20171010231408-1" author="jhipster">
-        <createTable tableName="ville">
+    <changeSet id="20171017153631-1" author="jhipster">
+        <createTable tableName="meteo">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false" />
+            <column name="celsius_min" type="double">
+                <constraints nullable="true" />
             </column>
-            <column name="meteo_id" type="bigint">
-                <constraints unique="true" nullable="true" />
+
+            <column name="celsius_max" type="double">
+                <constraints nullable="true" />
             </column>
+
+            <column name="updated" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="celsius_average" type="double">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
-        <createTable tableName="ville_activites">
-            <column name="activites_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="villes_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="villes_id, activites_id" tableName="ville_activites"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

@@ -5,6 +5,7 @@ export class Ville implements BaseEntity {
         public id?: number,
         public name?: string,
         public activites?: BaseEntity[],
+        public meteo?: BaseEntity,
     ) {
     }
 }

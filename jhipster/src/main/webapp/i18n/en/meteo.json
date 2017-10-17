@@ -1,0 +1,25 @@
+{
+    "projetWeekendApp": {
+        "meteo" : {
+            "home": {
+                "title": "Meteos",
+                "createLabel": "Create a new Meteo",
+                "createOrEditLabel": "Create or edit a Meteo"
+            },
+            "created": "A new Meteo is created with identifier {{ param }}",
+            "updated": "A Meteo is updated with identifier {{ param }}",
+            "deleted": "A Meteo is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Meteo {{ id }}?"
+            },
+            "detail": {
+                "title": "Meteo"
+            },
+            "celsiusMin": "Celsius Min",
+            "celsiusMax": "Celsius Max",
+            "updated": "Updated",
+            "celsiusAverage": "Celsius Average",
+            "ville": "Ville"
+        }
+    }
+}

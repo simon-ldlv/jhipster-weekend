@@ -16,7 +16,8 @@
                 "title": "Ville"
             },
             "name": "Name",
-            "activites": "Activites"
+            "activites": "Activites",
+            "meteo": "Meteo"
         }
     }
 }

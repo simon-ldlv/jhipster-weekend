@@ -10,6 +10,7 @@
                 "ville": "Ville",
                 "activite": "Activite",
                 "pratique": "Pratique",
+                "meteo": "Meteo",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

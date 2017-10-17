@@ -19,5 +19,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="activite"/>
         
+        <addForeignKeyConstraint baseColumnNames="meteo_id"
+                                 baseTableName="ville"
+                                 constraintName="fk_ville_meteo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="meteo"/>
+
     </changeSet>
 </databaseChangeLog>

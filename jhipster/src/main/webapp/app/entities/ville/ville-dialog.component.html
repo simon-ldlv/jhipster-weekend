@@ -30,6 +30,13 @@
                 <option [ngValue]="getSelected(ville.activites, activiteOption)" *ngFor="let activiteOption of activites; trackBy: trackActiviteById">{{activiteOption.name}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="projetWeekendApp.ville.meteo" for="field_meteo">Meteo</label>
+            <select class="form-control" id="field_meteo" name="meteo" [(ngModel)]="ville.meteo">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="meteoOption.id === ville.meteo?.id ? ville.meteo : meteoOption" *ngFor="let meteoOption of meteos; trackBy: trackMeteoById">{{meteoOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

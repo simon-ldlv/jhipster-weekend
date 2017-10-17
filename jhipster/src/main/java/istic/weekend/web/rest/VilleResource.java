@@ -9,7 +9,6 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -43,7 +42,6 @@ public class VilleResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new ville, or with status 400 (Bad Request) if the ville has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/villes")
     @Timed
     public ResponseEntity<Ville> createVille(@Valid @RequestBody Ville ville) throws URISyntaxException {
@@ -66,7 +64,6 @@ public class VilleResource {
      * or with status 500 (Internal Server Error) if the ville couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/villes")
     @Timed
     public ResponseEntity<Ville> updateVille(@Valid @RequestBody Ville ville) throws URISyntaxException {
@@ -112,7 +109,6 @@ public class VilleResource {
      * @param id the id of the ville to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/villes/{id}")
     @Timed
     public ResponseEntity<Void> deleteVille(@PathVariable Long id) {

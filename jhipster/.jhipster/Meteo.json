@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "ville",
+            "otherEntityName": "ville",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "meteo"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "celsiusMin",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "celsiusMax",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "updated",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "celsiusAverage",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20171017153631",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "meteo",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

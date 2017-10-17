@@ -1,28 +1,36 @@
-{ 
-    "fluentMethods": true, 
-    "relationships": [ 
-        { 
-            "relationshipName": "activites", 
-            "otherEntityName": "activite", 
-            "relationshipType": "many-to-many", 
-            "otherEntityField": "name", 
-            "ownerSide": true, 
-            "otherEntityRelationshipName": "villes" 
-        } 
-    ], 
-    "fields": [ 
-        { 
-            "fieldName": "name", 
-            "fieldType": "String", 
-            "fieldValidateRules": [ 
-                "required" 
-            ] 
-        } 
-    ], 
-    "changelogDate": "20171010231408", 
-    "dto": "no", 
-    "service": "no", 
-    "entityTableName": "ville", 
-    "jpaMetamodelFiltering": false, 
-    "pagination": "no" 
-} 
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "activites",
+            "otherEntityName": "activite",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "villes"
+        },
+        {
+            "relationshipName": "meteo",
+            "otherEntityName": "meteo",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "ville"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171010231408",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "ville",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

@@ -10,6 +10,7 @@ import { Ville } from './ville.model';
 import { VillePopupService } from './ville-popup.service';
 import { VilleService } from './ville.service';
 import { Activite, ActiviteService } from '../activite';
+import { Meteo, MeteoService } from '../meteo';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -23,11 +24,14 @@ export class VilleDialogComponent implements OnInit {
 
     activites: Activite[];
 
+    meteos: Meteo[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private villeService: VilleService,
         private activiteService: ActiviteService,
+        private meteoService: MeteoService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,6 +40,19 @@ export class VilleDialogComponent implements OnInit {
         this.isSaving = false;
         this.activiteService.query()
             .subscribe((res: ResponseWrapper) => { this.activites = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.meteoService
+            .query({filter: 'ville-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.ville.meteo || !this.ville.meteo.id) {
+                    this.meteos = res.json;
+                } else {
+                    this.meteoService
+                        .find(this.ville.meteo.id)
+                        .subscribe((subRes: Meteo) => {
+                            this.meteos = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -73,6 +90,10 @@ export class VilleDialogComponent implements OnInit {
     }
 
     trackActiviteById(index: number, item: Activite) {
+        return item.id;
+    }
+
+    trackMeteoById(index: number, item: Meteo) {
         return item.id;
     }
 

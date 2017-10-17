@@ -35,6 +35,10 @@ public class Ville implements Serializable {
                inverseJoinColumns = @JoinColumn(name="activites_id", referencedColumnName="id"))
     private Set<Activite> activites = new HashSet<>();
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Meteo meteo;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -80,6 +84,19 @@ public class Ville implements Serializable {
 
     public void setActivites(Set<Activite> activites) {
         this.activites = activites;
+    }
+
+    public Meteo getMeteo() {
+        return meteo;
+    }
+
+    public Ville meteo(Meteo meteo) {
+        this.meteo = meteo;
+        return this;
+    }
+
+    public void setMeteo(Meteo meteo) {
+        this.meteo = meteo;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
