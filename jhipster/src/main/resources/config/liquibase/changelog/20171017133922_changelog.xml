@@ -1,0 +1,156 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="jhipster (generated)" id="1508247570800-1">
+        <createTable tableName="activite">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="activitePK"/>
+            </column>
+            <column name="celsius_max" type="DOUBLE"/>
+            <column name="celsius_min" type="DOUBLE"/>
+            <column name="collectif" type="BOOLEAN"/>
+            <column name="enneige" type="BOOLEAN"/>
+            <column name="ensoleille" type="BOOLEAN"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="nuageux" type="BOOLEAN"/>
+            <column name="pluvieux" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-2">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-3">
+        <createTable tableName="jhi_persistent_audit_event">
+            <column autoIncrement="true" name="event_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
+            </column>
+            <column name="event_date" type="BINARY(255)"/>
+            <column name="event_type" type="VARCHAR(255)"/>
+            <column name="principal" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-4">
+        <createTable tableName="jhi_persistent_audit_evt_data">
+            <column name="event_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-5">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="BINARY(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="BINARY(255)"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(100)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(5)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)"/>
+            <column name="reset_date" type="BINARY(255)"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-6">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-7">
+        <createTable tableName="pratique">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pratiquePK"/>
+            </column>
+            <column name="activite_id" type="BIGINT"/>
+            <column name="owner_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-8">
+        <createTable tableName="ville">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="villePK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-9">
+        <createTable tableName="ville_activites">
+            <column name="villes_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activites_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-10">
+        <addPrimaryKey columnNames="event_id, name" tableName="jhi_persistent_audit_evt_data"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-11">
+        <addPrimaryKey columnNames="user_id, authority_name" tableName="jhi_user_authority"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-12">
+        <addPrimaryKey columnNames="villes_id, activites_id" tableName="ville_activites"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-13">
+        <addPrimaryKey columnNames="name" constraintName="jhi_authorityPK" tableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-14">
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-15">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-16">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-17">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data" constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="jhi_persistent_audit_event"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-18">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-19">
+        <addForeignKeyConstraint baseColumnNames="activites_id" baseTableName="ville_activites" constraintName="FK9b0pqlvxw3a5q7sgs0s6yto6k" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="activite"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-20">
+        <addForeignKeyConstraint baseColumnNames="villes_id" baseTableName="ville_activites" constraintName="FKaon542p9mvmdmufn1ycivyy4i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="ville"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-21">
+        <addForeignKeyConstraint baseColumnNames="activite_id" baseTableName="pratique" constraintName="FKgjm1bb8hsrn7kt48hprk4abl3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="activite"/>
+    </changeSet>
+    <changeSet author="jhipster (generated)" id="1508247570800-22">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="pratique" constraintName="FKin6n40iddv2u4pam1mbktkewd" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>
