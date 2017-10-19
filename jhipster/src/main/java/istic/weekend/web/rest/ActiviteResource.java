@@ -9,7 +9,6 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -42,7 +41,6 @@ public class ActiviteResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new activite, or with status 400 (Bad Request) if the activite has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/activites")
     @Timed
     public ResponseEntity<Activite> createActivite(@RequestBody Activite activite) throws URISyntaxException {
@@ -65,7 +63,6 @@ public class ActiviteResource {
      * or with status 500 (Internal Server Error) if the activite couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/activites")
     @Timed
     public ResponseEntity<Activite> updateActivite(@RequestBody Activite activite) throws URISyntaxException {
@@ -88,7 +85,7 @@ public class ActiviteResource {
     @Timed
     public List<Activite> getAllActivites() {
         log.debug("REST request to get all Activites");
-        return activiteRepository.findAll();
+        return activiteRepository.findAllWithEagerRelationships();
         }
 
     /**
@@ -101,7 +98,7 @@ public class ActiviteResource {
     @Timed
     public ResponseEntity<Activite> getActivite(@PathVariable Long id) {
         log.debug("REST request to get Activite : {}", id);
-        Activite activite = activiteRepository.findOne(id);
+        Activite activite = activiteRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(activite));
     }
 
@@ -111,7 +108,6 @@ public class ActiviteResource {
      * @param id the id of the activite to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/activites/{id}")
     @Timed
     public ResponseEntity<Void> deleteActivite(@PathVariable Long id) {

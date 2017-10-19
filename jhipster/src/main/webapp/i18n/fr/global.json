@@ -11,6 +11,7 @@
                 "activite": "Activite",
                 "pratique": "Pratique",
                 "meteo": "Meteo",
+                "weather": "Weather",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

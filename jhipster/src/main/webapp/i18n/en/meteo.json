@@ -15,11 +15,10 @@
             "detail": {
                 "title": "Meteo"
             },
-            "celsiusMin": "Celsius Min",
-            "celsiusMax": "Celsius Max",
             "updated": "Updated",
             "celsiusAverage": "Celsius Average",
-            "ville": "Ville"
+            "ville": "Ville",
+            "weather": "Weather"
         }
     }
 }

@@ -7,17 +7,15 @@
             "relationshipType": "one-to-one",
             "ownerSide": false,
             "otherEntityRelationshipName": "meteo"
+        },
+        {
+            "relationshipName": "weather",
+            "otherEntityName": "weather",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
         }
     ],
     "fields": [
-        {
-            "fieldName": "celsiusMin",
-            "fieldType": "Double"
-        },
-        {
-            "fieldName": "celsiusMax",
-            "fieldType": "Double"
-        },
         {
             "fieldName": "updated",
             "fieldType": "LocalDate"

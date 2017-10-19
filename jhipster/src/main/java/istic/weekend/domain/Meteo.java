@@ -23,12 +23,6 @@ public class Meteo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "celsius_min")
-    private Double celsiusMin;
-
-    @Column(name = "celsius_max")
-    private Double celsiusMax;
-
     @Column(name = "updated")
     private LocalDate updated;
 
@@ -39,6 +33,9 @@ public class Meteo implements Serializable {
     @JsonIgnore
     private Ville ville;
 
+    @ManyToOne
+    private Weather weather;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -46,32 +43,6 @@ public class Meteo implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Double getCelsiusMin() {
-        return celsiusMin;
-    }
-
-    public Meteo celsiusMin(Double celsiusMin) {
-        this.celsiusMin = celsiusMin;
-        return this;
-    }
-
-    public void setCelsiusMin(Double celsiusMin) {
-        this.celsiusMin = celsiusMin;
-    }
-
-    public Double getCelsiusMax() {
-        return celsiusMax;
-    }
-
-    public Meteo celsiusMax(Double celsiusMax) {
-        this.celsiusMax = celsiusMax;
-        return this;
-    }
-
-    public void setCelsiusMax(Double celsiusMax) {
-        this.celsiusMax = celsiusMax;
     }
 
     public LocalDate getUpdated() {
@@ -112,6 +83,19 @@ public class Meteo implements Serializable {
     public void setVille(Ville ville) {
         this.ville = ville;
     }
+
+    public Weather getWeather() {
+        return weather;
+    }
+
+    public Meteo weather(Weather weather) {
+        this.weather = weather;
+        return this;
+    }
+
+    public void setWeather(Weather weather) {
+        this.weather = weather;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -138,8 +122,6 @@ public class Meteo implements Serializable {
     public String toString() {
         return "Meteo{" +
             "id=" + getId() +
-            ", celsiusMin='" + getCelsiusMin() + "'" +
-            ", celsiusMax='" + getCelsiusMax() + "'" +
             ", updated='" + getUpdated() + "'" +
             ", celsiusAverage='" + getCelsiusAverage() + "'" +
             "}";

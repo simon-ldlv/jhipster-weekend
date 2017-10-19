@@ -43,18 +43,6 @@ public class ActiviteResourceIntTest {
     private static final Boolean DEFAULT_COLLECTIF = false;
     private static final Boolean UPDATED_COLLECTIF = true;
 
-    private static final Boolean DEFAULT_ENSOLEILLE = false;
-    private static final Boolean UPDATED_ENSOLEILLE = true;
-
-    private static final Boolean DEFAULT_NUAGEUX = false;
-    private static final Boolean UPDATED_NUAGEUX = true;
-
-    private static final Boolean DEFAULT_ENNEIGE = false;
-    private static final Boolean UPDATED_ENNEIGE = true;
-
-    private static final Boolean DEFAULT_PLUVIEUX = false;
-    private static final Boolean UPDATED_PLUVIEUX = true;
-
     private static final Double DEFAULT_CELSIUS_MIN = 1D;
     private static final Double UPDATED_CELSIUS_MIN = 2D;
 
@@ -100,10 +88,6 @@ public class ActiviteResourceIntTest {
         Activite activite = new Activite()
             .name(DEFAULT_NAME)
             .collectif(DEFAULT_COLLECTIF)
-            .ensoleille(DEFAULT_ENSOLEILLE)
-            .nuageux(DEFAULT_NUAGEUX)
-            .enneige(DEFAULT_ENNEIGE)
-            .pluvieux(DEFAULT_PLUVIEUX)
             .celsiusMin(DEFAULT_CELSIUS_MIN)
             .celsiusMax(DEFAULT_CELSIUS_MAX);
         return activite;
@@ -131,10 +115,6 @@ public class ActiviteResourceIntTest {
         Activite testActivite = activiteList.get(activiteList.size() - 1);
         assertThat(testActivite.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testActivite.isCollectif()).isEqualTo(DEFAULT_COLLECTIF);
-        assertThat(testActivite.isEnsoleille()).isEqualTo(DEFAULT_ENSOLEILLE);
-        assertThat(testActivite.isNuageux()).isEqualTo(DEFAULT_NUAGEUX);
-        assertThat(testActivite.isEnneige()).isEqualTo(DEFAULT_ENNEIGE);
-        assertThat(testActivite.isPluvieux()).isEqualTo(DEFAULT_PLUVIEUX);
         assertThat(testActivite.getCelsiusMin()).isEqualTo(DEFAULT_CELSIUS_MIN);
         assertThat(testActivite.getCelsiusMax()).isEqualTo(DEFAULT_CELSIUS_MAX);
     }
@@ -171,10 +151,6 @@ public class ActiviteResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(activite.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].collectif").value(hasItem(DEFAULT_COLLECTIF.booleanValue())))
-            .andExpect(jsonPath("$.[*].ensoleille").value(hasItem(DEFAULT_ENSOLEILLE.booleanValue())))
-            .andExpect(jsonPath("$.[*].nuageux").value(hasItem(DEFAULT_NUAGEUX.booleanValue())))
-            .andExpect(jsonPath("$.[*].enneige").value(hasItem(DEFAULT_ENNEIGE.booleanValue())))
-            .andExpect(jsonPath("$.[*].pluvieux").value(hasItem(DEFAULT_PLUVIEUX.booleanValue())))
             .andExpect(jsonPath("$.[*].celsiusMin").value(hasItem(DEFAULT_CELSIUS_MIN.doubleValue())))
             .andExpect(jsonPath("$.[*].celsiusMax").value(hasItem(DEFAULT_CELSIUS_MAX.doubleValue())));
     }
@@ -192,10 +168,6 @@ public class ActiviteResourceIntTest {
             .andExpect(jsonPath("$.id").value(activite.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.collectif").value(DEFAULT_COLLECTIF.booleanValue()))
-            .andExpect(jsonPath("$.ensoleille").value(DEFAULT_ENSOLEILLE.booleanValue()))
-            .andExpect(jsonPath("$.nuageux").value(DEFAULT_NUAGEUX.booleanValue()))
-            .andExpect(jsonPath("$.enneige").value(DEFAULT_ENNEIGE.booleanValue()))
-            .andExpect(jsonPath("$.pluvieux").value(DEFAULT_PLUVIEUX.booleanValue()))
             .andExpect(jsonPath("$.celsiusMin").value(DEFAULT_CELSIUS_MIN.doubleValue()))
             .andExpect(jsonPath("$.celsiusMax").value(DEFAULT_CELSIUS_MAX.doubleValue()));
     }
@@ -220,10 +192,6 @@ public class ActiviteResourceIntTest {
         updatedActivite
             .name(UPDATED_NAME)
             .collectif(UPDATED_COLLECTIF)
-            .ensoleille(UPDATED_ENSOLEILLE)
-            .nuageux(UPDATED_NUAGEUX)
-            .enneige(UPDATED_ENNEIGE)
-            .pluvieux(UPDATED_PLUVIEUX)
             .celsiusMin(UPDATED_CELSIUS_MIN)
             .celsiusMax(UPDATED_CELSIUS_MAX);
 
@@ -238,10 +206,6 @@ public class ActiviteResourceIntTest {
         Activite testActivite = activiteList.get(activiteList.size() - 1);
         assertThat(testActivite.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testActivite.isCollectif()).isEqualTo(UPDATED_COLLECTIF);
-        assertThat(testActivite.isEnsoleille()).isEqualTo(UPDATED_ENSOLEILLE);
-        assertThat(testActivite.isNuageux()).isEqualTo(UPDATED_NUAGEUX);
-        assertThat(testActivite.isEnneige()).isEqualTo(UPDATED_ENNEIGE);
-        assertThat(testActivite.isPluvieux()).isEqualTo(UPDATED_PLUVIEUX);
         assertThat(testActivite.getCelsiusMin()).isEqualTo(UPDATED_CELSIUS_MIN);
         assertThat(testActivite.getCelsiusMax()).isEqualTo(UPDATED_CELSIUS_MAX);
     }

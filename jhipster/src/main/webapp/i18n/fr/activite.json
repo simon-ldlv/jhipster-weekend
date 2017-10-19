@@ -17,13 +17,10 @@
             },
             "name": "Name",
             "collectif": "Collectif",
-            "ensoleille": "Ensoleille",
-            "nuageux": "Nuageux",
-            "enneige": "Enneige",
-            "pluvieux": "Pluvieux",
             "celsiusMin": "Celsius Min",
             "celsiusMax": "Celsius Max",
-            "villes": "Villes"
+            "villes": "Villes",
+            "weathers": "Weathers"
         }
     }
 }

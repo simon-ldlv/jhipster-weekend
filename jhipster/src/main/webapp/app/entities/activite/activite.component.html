@@ -19,12 +19,9 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="projetWeekendApp.activite.name">Name</span></th>
             <th><span jhiTranslate="projetWeekendApp.activite.collectif">Collectif</span></th>
-            <th><span jhiTranslate="projetWeekendApp.activite.ensoleille">Ensoleille</span></th>
-            <th><span jhiTranslate="projetWeekendApp.activite.nuageux">Nuageux</span></th>
-            <th><span jhiTranslate="projetWeekendApp.activite.enneige">Enneige</span></th>
-            <th><span jhiTranslate="projetWeekendApp.activite.pluvieux">Pluvieux</span></th>
             <th><span jhiTranslate="projetWeekendApp.activite.celsiusMin">Celsius Min</span></th>
             <th><span jhiTranslate="projetWeekendApp.activite.celsiusMax">Celsius Max</span></th>
+            <th><span jhiTranslate="projetWeekendApp.activite.weathers">Weathers</span></th>
             <th></th>
             </tr>
             </thead>
@@ -33,12 +30,13 @@
                 <td><a [routerLink]="['../activite', activite.id ]">{{activite.id}}</a></td>
                 <td>{{activite.name}}</td>
                 <td>{{activite.collectif}}</td>
-                <td>{{activite.ensoleille}}</td>
-                <td>{{activite.nuageux}}</td>
-                <td>{{activite.enneige}}</td>
-                <td>{{activite.pluvieux}}</td>
                 <td>{{activite.celsiusMin}}</td>
                 <td>{{activite.celsiusMax}}</td>
+                <td>
+                    <span *ngFor="let weathers of activite.weathers; let last = last">
+                            <a class="form-control-static" [routerLink]="['../weather', weathers?.id ]">{{weathers.name}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -39,12 +39,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ProjetWeekendApp.class)
 public class MeteoResourceIntTest {
 
-    private static final Double DEFAULT_CELSIUS_MIN = 1D;
-    private static final Double UPDATED_CELSIUS_MIN = 2D;
-
-    private static final Double DEFAULT_CELSIUS_MAX = 1D;
-    private static final Double UPDATED_CELSIUS_MAX = 2D;
-
     private static final LocalDate DEFAULT_UPDATED = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_UPDATED = LocalDate.now(ZoneId.systemDefault());
 
@@ -88,8 +82,6 @@ public class MeteoResourceIntTest {
      */
     public static Meteo createEntity(EntityManager em) {
         Meteo meteo = new Meteo()
-            .celsiusMin(DEFAULT_CELSIUS_MIN)
-            .celsiusMax(DEFAULT_CELSIUS_MAX)
             .updated(DEFAULT_UPDATED)
             .celsiusAverage(DEFAULT_CELSIUS_AVERAGE);
         return meteo;
@@ -115,8 +107,6 @@ public class MeteoResourceIntTest {
         List<Meteo> meteoList = meteoRepository.findAll();
         assertThat(meteoList).hasSize(databaseSizeBeforeCreate + 1);
         Meteo testMeteo = meteoList.get(meteoList.size() - 1);
-        assertThat(testMeteo.getCelsiusMin()).isEqualTo(DEFAULT_CELSIUS_MIN);
-        assertThat(testMeteo.getCelsiusMax()).isEqualTo(DEFAULT_CELSIUS_MAX);
         assertThat(testMeteo.getUpdated()).isEqualTo(DEFAULT_UPDATED);
         assertThat(testMeteo.getCelsiusAverage()).isEqualTo(DEFAULT_CELSIUS_AVERAGE);
     }
@@ -151,8 +141,6 @@ public class MeteoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(meteo.getId().intValue())))
-            .andExpect(jsonPath("$.[*].celsiusMin").value(hasItem(DEFAULT_CELSIUS_MIN.doubleValue())))
-            .andExpect(jsonPath("$.[*].celsiusMax").value(hasItem(DEFAULT_CELSIUS_MAX.doubleValue())))
             .andExpect(jsonPath("$.[*].updated").value(hasItem(DEFAULT_UPDATED.toString())))
             .andExpect(jsonPath("$.[*].celsiusAverage").value(hasItem(DEFAULT_CELSIUS_AVERAGE.doubleValue())));
     }
@@ -168,8 +156,6 @@ public class MeteoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(meteo.getId().intValue()))
-            .andExpect(jsonPath("$.celsiusMin").value(DEFAULT_CELSIUS_MIN.doubleValue()))
-            .andExpect(jsonPath("$.celsiusMax").value(DEFAULT_CELSIUS_MAX.doubleValue()))
             .andExpect(jsonPath("$.updated").value(DEFAULT_UPDATED.toString()))
             .andExpect(jsonPath("$.celsiusAverage").value(DEFAULT_CELSIUS_AVERAGE.doubleValue()));
     }
@@ -192,8 +178,6 @@ public class MeteoResourceIntTest {
         // Update the meteo
         Meteo updatedMeteo = meteoRepository.findOne(meteo.getId());
         updatedMeteo
-            .celsiusMin(UPDATED_CELSIUS_MIN)
-            .celsiusMax(UPDATED_CELSIUS_MAX)
             .updated(UPDATED_UPDATED)
             .celsiusAverage(UPDATED_CELSIUS_AVERAGE);
 
@@ -206,8 +190,6 @@ public class MeteoResourceIntTest {
         List<Meteo> meteoList = meteoRepository.findAll();
         assertThat(meteoList).hasSize(databaseSizeBeforeUpdate);
         Meteo testMeteo = meteoList.get(meteoList.size() - 1);
-        assertThat(testMeteo.getCelsiusMin()).isEqualTo(UPDATED_CELSIUS_MIN);
-        assertThat(testMeteo.getCelsiusMax()).isEqualTo(UPDATED_CELSIUS_MAX);
         assertThat(testMeteo.getUpdated()).isEqualTo(UPDATED_UPDATED);
         assertThat(testMeteo.getCelsiusAverage()).isEqualTo(UPDATED_CELSIUS_AVERAGE);
     }

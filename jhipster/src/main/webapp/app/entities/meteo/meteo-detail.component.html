@@ -4,14 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="projetWeekendApp.meteo.celsiusMin">Celsius Min</span></dt>
-        <dd>
-            <span>{{meteo.celsiusMin}}</span>
-        </dd>
-        <dt><span jhiTranslate="projetWeekendApp.meteo.celsiusMax">Celsius Max</span></dt>
-        <dd>
-            <span>{{meteo.celsiusMax}}</span>
-        </dd>
         <dt><span jhiTranslate="projetWeekendApp.meteo.updated">Updated</span></dt>
         <dd>
             <span>{{meteo.updated | date:'mediumDate'}}</span>
@@ -19,6 +11,12 @@
         <dt><span jhiTranslate="projetWeekendApp.meteo.celsiusAverage">Celsius Average</span></dt>
         <dd>
             <span>{{meteo.celsiusAverage}}</span>
+        </dd>
+        <dt><span jhiTranslate="projetWeekendApp.meteo.weather">Weather</span></dt>
+        <dd>
+            <div *ngIf="meteo.weather">
+                <a [routerLink]="['/weather', meteo.weather?.id]">{{meteo.weather?.name}}</a>
+            </div>
         </dd>
     </dl>
 
@@ -28,7 +26,7 @@
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button"
+    <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
             [routerLink]="['/', { outlets: { popup: 'meteo/'+ meteo.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">

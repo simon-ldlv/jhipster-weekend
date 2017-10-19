@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "meteos",
+            "otherEntityName": "meteo",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "weather"
+        },
+        {
+            "relationshipName": "activites",
+            "otherEntityName": "activite",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "weathers"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171018092703",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "weather",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

@@ -47,6 +47,10 @@ public class CacheConfiguration {
             cm.createCache(istic.weekend.domain.Pratique.class.getName(), jcacheConfiguration);
             cm.createCache(istic.weekend.domain.Ville.class.getName() + ".activites", jcacheConfiguration);
             cm.createCache(istic.weekend.domain.Meteo.class.getName(), jcacheConfiguration);
+            cm.createCache(istic.weekend.domain.Weather.class.getName(), jcacheConfiguration);
+            cm.createCache(istic.weekend.domain.Weather.class.getName() + ".meteos", jcacheConfiguration);
+            cm.createCache(istic.weekend.domain.Activite.class.getName() + ".weathers", jcacheConfiguration);
+            cm.createCache(istic.weekend.domain.Weather.class.getName() + ".activites", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

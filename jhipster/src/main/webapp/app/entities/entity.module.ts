@@ -4,6 +4,7 @@ import { ProjetWeekendVilleModule } from './ville/ville.module';
 import { ProjetWeekendActiviteModule } from './activite/activite.module';
 import { ProjetWeekendPratiqueModule } from './pratique/pratique.module';
 import { ProjetWeekendMeteoModule } from './meteo/meteo.module';
+import { ProjetWeekendWeatherModule } from './weather/weather.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -12,6 +13,7 @@ import { ProjetWeekendMeteoModule } from './meteo/meteo.module';
         ProjetWeekendActiviteModule,
         ProjetWeekendPratiqueModule,
         ProjetWeekendMeteoModule,
+        ProjetWeekendWeatherModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

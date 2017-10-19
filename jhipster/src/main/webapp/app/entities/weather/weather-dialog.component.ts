@@ -6,42 +6,36 @@ import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { Activite } from './activite.model';
-import { ActivitePopupService } from './activite-popup.service';
-import { ActiviteService } from './activite.service';
-import { Ville, VilleService } from '../ville';
-import { Weather, WeatherService } from '../weather';
+import { Weather } from './weather.model';
+import { WeatherPopupService } from './weather-popup.service';
+import { WeatherService } from './weather.service';
+import { Activite, ActiviteService } from '../activite';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
-    selector: 'jhi-activite-dialog',
-    templateUrl: './activite-dialog.component.html'
+    selector: 'jhi-weather-dialog',
+    templateUrl: './weather-dialog.component.html'
 })
-export class ActiviteDialogComponent implements OnInit {
+export class WeatherDialogComponent implements OnInit {
 
-    activite: Activite;
+    weather: Weather;
     isSaving: boolean;
 
-    villes: Ville[];
-
-    weathers: Weather[];
+    activites: Activite[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
-        private activiteService: ActiviteService,
-        private villeService: VilleService,
         private weatherService: WeatherService,
+        private activiteService: ActiviteService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.villeService.query()
-            .subscribe((res: ResponseWrapper) => { this.villes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.weatherService.query()
-            .subscribe((res: ResponseWrapper) => { this.weathers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.activiteService.query()
+            .subscribe((res: ResponseWrapper) => { this.activites = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -50,22 +44,22 @@ export class ActiviteDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.activite.id !== undefined) {
+        if (this.weather.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.activiteService.update(this.activite));
+                this.weatherService.update(this.weather));
         } else {
             this.subscribeToSaveResponse(
-                this.activiteService.create(this.activite));
+                this.weatherService.create(this.weather));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Activite>) {
-        result.subscribe((res: Activite) =>
+    private subscribeToSaveResponse(result: Observable<Weather>) {
+        result.subscribe((res: Weather) =>
             this.onSaveSuccess(res), (res: Response) => this.onSaveError());
     }
 
-    private onSaveSuccess(result: Activite) {
-        this.eventManager.broadcast({ name: 'activiteListModification', content: 'OK'});
+    private onSaveSuccess(result: Weather) {
+        this.eventManager.broadcast({ name: 'weatherListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -78,11 +72,7 @@ export class ActiviteDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackVilleById(index: number, item: Ville) {
-        return item.id;
-    }
-
-    trackWeatherById(index: number, item: Weather) {
+    trackActiviteById(index: number, item: Activite) {
         return item.id;
     }
 
@@ -99,26 +89,26 @@ export class ActiviteDialogComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-activite-popup',
+    selector: 'jhi-weather-popup',
     template: ''
 })
-export class ActivitePopupComponent implements OnInit, OnDestroy {
+export class WeatherPopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
     constructor(
         private route: ActivatedRoute,
-        private activitePopupService: ActivitePopupService
+        private weatherPopupService: WeatherPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.activitePopupService
-                    .open(ActiviteDialogComponent as Component, params['id']);
+                this.weatherPopupService
+                    .open(WeatherDialogComponent as Component, params['id']);
             } else {
-                this.activitePopupService
-                    .open(ActiviteDialogComponent as Component);
+                this.weatherPopupService
+                    .open(WeatherDialogComponent as Component);
             }
         });
     }

@@ -10,6 +10,7 @@ import { Meteo } from './meteo.model';
 import { MeteoPopupService } from './meteo-popup.service';
 import { MeteoService } from './meteo.service';
 import { Ville, VilleService } from '../ville';
+import { Weather, WeatherService } from '../weather';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -22,6 +23,8 @@ export class MeteoDialogComponent implements OnInit {
     isSaving: boolean;
 
     villes: Ville[];
+
+    weathers: Weather[];
     updatedDp: any;
 
     constructor(
@@ -29,6 +32,7 @@ export class MeteoDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private meteoService: MeteoService,
         private villeService: VilleService,
+        private weatherService: WeatherService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -37,6 +41,8 @@ export class MeteoDialogComponent implements OnInit {
         this.isSaving = false;
         this.villeService.query()
             .subscribe((res: ResponseWrapper) => { this.villes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.weatherService.query()
+            .subscribe((res: ResponseWrapper) => { this.weathers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -74,6 +80,10 @@ export class MeteoDialogComponent implements OnInit {
     }
 
     trackVilleById(index: number, item: Ville) {
+        return item.id;
+    }
+
+    trackWeatherById(index: number, item: Weather) {
         return item.id;
     }
 }

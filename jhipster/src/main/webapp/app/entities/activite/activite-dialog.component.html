@@ -23,26 +23,6 @@
                 [(ngModel)]="activite.collectif"  />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.ensoleille" for="field_ensoleille">Ensoleille</label>
-            <input type="checkbox" class="form-control" name="ensoleille" id="field_ensoleille"
-                [(ngModel)]="activite.ensoleille"  />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.nuageux" for="field_nuageux">Nuageux</label>
-            <input type="checkbox" class="form-control" name="nuageux" id="field_nuageux"
-                [(ngModel)]="activite.nuageux"  />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.enneige" for="field_enneige">Enneige</label>
-            <input type="checkbox" class="form-control" name="enneige" id="field_enneige"
-                [(ngModel)]="activite.enneige"  />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.pluvieux" for="field_pluvieux">Pluvieux</label>
-            <input type="checkbox" class="form-control" name="pluvieux" id="field_pluvieux"
-                [(ngModel)]="activite.pluvieux"  />
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="projetWeekendApp.activite.celsiusMin" for="field_celsiusMin">Celsius Min</label>
             <input type="number" class="form-control" name="celsiusMin" id="field_celsiusMin"
                 [(ngModel)]="activite.celsiusMin"  />
@@ -53,6 +33,12 @@
                 [(ngModel)]="activite.celsiusMax"  />
         </div>
 
+        <div class="form-group">
+            <label jhiTranslate="projetWeekendApp.activite.weathers" for="field_weathers">Weathers</label>
+            <select class="form-control" id="field_weathers" multiple name="weathers" [(ngModel)]="activite.weathers">
+                <option [ngValue]="getSelected(activite.weathers, weatherOption)" *ngFor="let weatherOption of weathers; trackBy: trackWeatherById">{{weatherOption.name}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

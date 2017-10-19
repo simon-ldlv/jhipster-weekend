@@ -30,18 +30,6 @@ public class Activite implements Serializable {
     @Column(name = "collectif")
     private Boolean collectif;
 
-    @Column(name = "ensoleille")
-    private Boolean ensoleille;
-
-    @Column(name = "nuageux")
-    private Boolean nuageux;
-
-    @Column(name = "enneige")
-    private Boolean enneige;
-
-    @Column(name = "pluvieux")
-    private Boolean pluvieux;
-
     @Column(name = "celsius_min")
     private Double celsiusMin;
 
@@ -52,6 +40,13 @@ public class Activite implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Ville> villes = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "activite_weathers",
+               joinColumns = @JoinColumn(name="activites_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="weathers_id", referencedColumnName="id"))
+    private Set<Weather> weathers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -86,58 +81,6 @@ public class Activite implements Serializable {
 
     public void setCollectif(Boolean collectif) {
         this.collectif = collectif;
-    }
-
-    public Boolean isEnsoleille() {
-        return ensoleille;
-    }
-
-    public Activite ensoleille(Boolean ensoleille) {
-        this.ensoleille = ensoleille;
-        return this;
-    }
-
-    public void setEnsoleille(Boolean ensoleille) {
-        this.ensoleille = ensoleille;
-    }
-
-    public Boolean isNuageux() {
-        return nuageux;
-    }
-
-    public Activite nuageux(Boolean nuageux) {
-        this.nuageux = nuageux;
-        return this;
-    }
-
-    public void setNuageux(Boolean nuageux) {
-        this.nuageux = nuageux;
-    }
-
-    public Boolean isEnneige() {
-        return enneige;
-    }
-
-    public Activite enneige(Boolean enneige) {
-        this.enneige = enneige;
-        return this;
-    }
-
-    public void setEnneige(Boolean enneige) {
-        this.enneige = enneige;
-    }
-
-    public Boolean isPluvieux() {
-        return pluvieux;
-    }
-
-    public Activite pluvieux(Boolean pluvieux) {
-        this.pluvieux = pluvieux;
-        return this;
-    }
-
-    public void setPluvieux(Boolean pluvieux) {
-        this.pluvieux = pluvieux;
     }
 
     public Double getCelsiusMin() {
@@ -190,6 +133,31 @@ public class Activite implements Serializable {
     public void setVilles(Set<Ville> villes) {
         this.villes = villes;
     }
+
+    public Set<Weather> getWeathers() {
+        return weathers;
+    }
+
+    public Activite weathers(Set<Weather> weathers) {
+        this.weathers = weathers;
+        return this;
+    }
+
+    public Activite addWeathers(Weather weather) {
+        this.weathers.add(weather);
+        weather.getActivites().add(this);
+        return this;
+    }
+
+    public Activite removeWeathers(Weather weather) {
+        this.weathers.remove(weather);
+        weather.getActivites().remove(this);
+        return this;
+    }
+
+    public void setWeathers(Set<Weather> weathers) {
+        this.weathers = weathers;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -218,10 +186,6 @@ public class Activite implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", collectif='" + isCollectif() + "'" +
-            ", ensoleille='" + isEnsoleille() + "'" +
-            ", nuageux='" + isNuageux() + "'" +
-            ", enneige='" + isEnneige() + "'" +
-            ", pluvieux='" + isPluvieux() + "'" +
             ", celsiusMin='" + getCelsiusMin() + "'" +
             ", celsiusMax='" + getCelsiusMax() + "'" +
             "}";

@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="projetWeekendApp.meteo.home.title">Meteos</span>
-        <button class="btn btn-primary float-right jh-create-entity create-meteo" [routerLink]="['/', { outlets: { popup: ['meteo-new'] } }]">
+        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" class="btn btn-primary float-right jh-create-entity create-meteo" [routerLink]="['/', { outlets: { popup: ['meteo-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="projetWeekendApp.meteo.home.createLabel">
             Create new Meteo
@@ -17,20 +17,22 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="projetWeekendApp.meteo.celsiusMin">Celsius Min</span></th>
-            <th><span jhiTranslate="projetWeekendApp.meteo.celsiusMax">Celsius Max</span></th>
             <th><span jhiTranslate="projetWeekendApp.meteo.updated">Updated</span></th>
             <th><span jhiTranslate="projetWeekendApp.meteo.celsiusAverage">Celsius Average</span></th>
+            <th><span jhiTranslate="projetWeekendApp.meteo.weather">Weather</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let meteo of meteos ;trackBy: trackId">
                 <td><a [routerLink]="['../meteo', meteo.id ]">{{meteo.id}}</a></td>
-                <td>{{meteo.celsiusMin}}</td>
-                <td>{{meteo.celsiusMax}}</td>
                 <td>{{meteo.updated | date:'mediumDate'}}</td>
                 <td>{{meteo.celsiusAverage}}</td>
+                <td>
+                    <div *ngIf="meteo.weather">
+                        <a [routerLink]="['../weather', meteo.weather?.id ]" >{{meteo.weather?.name}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
@@ -39,14 +41,14 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'meteo/'+ meteo.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'meteo/'+ meteo.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">

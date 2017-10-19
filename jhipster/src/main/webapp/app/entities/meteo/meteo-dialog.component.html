@@ -13,16 +13,6 @@
                    [(ngModel)]="meteo.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="projetWeekendApp.meteo.celsiusMin" for="field_celsiusMin">Celsius Min</label>
-            <input type="number" class="form-control" name="celsiusMin" id="field_celsiusMin"
-                [(ngModel)]="meteo.celsiusMin"  />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="projetWeekendApp.meteo.celsiusMax" for="field_celsiusMax">Celsius Max</label>
-            <input type="number" class="form-control" name="celsiusMax" id="field_celsiusMax"
-                [(ngModel)]="meteo.celsiusMax"  />
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="projetWeekendApp.meteo.updated" for="field_updated">Updated</label>
             <div class="input-group">
                 <input id="field_updated" type="text" class="form-control" name="updated" ngbDatepicker  #updatedDp="ngbDatepicker" [(ngModel)]="meteo.updated"
@@ -38,6 +28,13 @@
                 [(ngModel)]="meteo.celsiusAverage"  />
         </div>
 
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="projetWeekendApp.meteo.weather" for="field_weather">Weather</label>
+            <select class="form-control" id="field_weather" name="weather" [(ngModel)]="meteo.weather" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="weatherOption.id === meteo.weather?.id ? meteo.weather : weatherOption" *ngFor="let weatherOption of weathers; trackBy: trackWeatherById">{{weatherOption.name}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

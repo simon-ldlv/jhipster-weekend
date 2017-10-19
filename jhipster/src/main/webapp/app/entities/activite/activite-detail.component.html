@@ -12,22 +12,6 @@
         <dd>
             <span>{{activite.collectif}}</span>
         </dd>
-        <dt><span jhiTranslate="projetWeekendApp.activite.ensoleille">Ensoleille</span></dt>
-        <dd>
-            <span>{{activite.ensoleille}}</span>
-        </dd>
-        <dt><span jhiTranslate="projetWeekendApp.activite.nuageux">Nuageux</span></dt>
-        <dd>
-            <span>{{activite.nuageux}}</span>
-        </dd>
-        <dt><span jhiTranslate="projetWeekendApp.activite.enneige">Enneige</span></dt>
-        <dd>
-            <span>{{activite.enneige}}</span>
-        </dd>
-        <dt><span jhiTranslate="projetWeekendApp.activite.pluvieux">Pluvieux</span></dt>
-        <dd>
-            <span>{{activite.pluvieux}}</span>
-        </dd>
         <dt><span jhiTranslate="projetWeekendApp.activite.celsiusMin">Celsius Min</span></dt>
         <dd>
             <span>{{activite.celsiusMin}}</span>
@@ -35,6 +19,12 @@
         <dt><span jhiTranslate="projetWeekendApp.activite.celsiusMax">Celsius Max</span></dt>
         <dd>
             <span>{{activite.celsiusMax}}</span>
+        </dd>
+        <dt><span jhiTranslate="projetWeekendApp.activite.weathers">Weathers</span></dt>
+        <dd>
+            <span *ngFor="let weathers of activite.weathers; let last = last">
+                <a [routerLink]="['/weather', weathers?.id ]">{{weathers.name}}</a>{{last ? '' : ', '}}
+            </span>
         </dd>
     </dl>
 

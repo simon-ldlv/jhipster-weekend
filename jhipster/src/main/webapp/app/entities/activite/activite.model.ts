@@ -5,18 +5,11 @@ export class Activite implements BaseEntity {
         public id?: number,
         public name?: string,
         public collectif?: boolean,
-        public ensoleille?: boolean,
-        public nuageux?: boolean,
-        public enneige?: boolean,
-        public pluvieux?: boolean,
         public celsiusMin?: number,
         public celsiusMax?: number,
         public villes?: BaseEntity[],
+        public weathers?: BaseEntity[],
     ) {
         this.collectif = false;
-        this.ensoleille = false;
-        this.nuageux = false;
-        this.enneige = false;
-        this.pluvieux = false;
     }
 }
