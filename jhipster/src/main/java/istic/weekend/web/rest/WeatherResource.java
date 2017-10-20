@@ -149,16 +149,18 @@ public class WeatherResource {
     @GetMapping("/updateWeather")
     @Timed
    public void updateWeather() {
-    	List<Meteo> listMeteo = meteoRepository.findAll();
+        log.debug("\nREST Consumer to OpenWeatherMap\n");
+
+    	List<Ville> listVille = villeRepository.findAll();
     	List<Weather> listWeather = weatherRepository.findAll();
-	   for(Meteo meteo : listMeteo) {
-		   Ville ville = meteo.getVille();
-		   String villeName = ville.getName();
+	   for(Ville villeCurrent : listVille) {
+		   String villeName = villeCurrent.getName();
 		   Meteo newmeteo = new Meteo();
 		   newmeteo.setCelsiusAverage(RestConsumer.getMoyenTemp(RestConsumer.restWeather(villeName+", FR")));
 		   String newMeteoWeather = RestConsumer.getMeteo(RestConsumer.restWeather(villeName+", FR"));
-		   newMeteoWeather.toUpperCase().replace(" ", "_");
+		   newMeteoWeather = newMeteoWeather.toUpperCase().replace(" ", "_");
 		   for(Weather weather : listWeather) {
+		        log.debug("\nCompare : ["+weather.getName()+"] == ["+newMeteoWeather+"] \n");
 			   if(weather.getName().equals(newMeteoWeather)) {
 				   newmeteo.setWeather(weather);
 				   break;
@@ -166,10 +168,10 @@ public class WeatherResource {
 		   }
 		   
 		   newmeteo.setUpdated(LocalDate.now());
-		   newmeteo.setVille(ville);
-		   ville.setMeteo(newmeteo);
+		   newmeteo.setVille(villeCurrent);
+		   villeCurrent.setMeteo(newmeteo);
 		   meteoRepository.save(newmeteo);
-		   villeRepository.save(ville);
+		   villeRepository.save(villeCurrent);
 		   
 	   }
    }
