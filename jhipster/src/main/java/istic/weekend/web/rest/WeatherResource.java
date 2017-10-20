@@ -2,10 +2,15 @@ package istic.weekend.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 
+import istic.weekend.domain.Meteo;
 import istic.weekend.domain.User;
+import istic.weekend.domain.Ville;
 import istic.weekend.domain.Weather;
 import istic.weekend.domain.WeekendInfo;
+import istic.weekend.web.rest.RestConsumer;
+import istic.weekend.repository.MeteoRepository;
 import istic.weekend.repository.UserRepository;
+import istic.weekend.repository.VilleRepository;
 import istic.weekend.repository.WeatherRepository;
 import istic.weekend.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -20,6 +25,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,11 +42,14 @@ public class WeatherResource {
 
     private final WeatherRepository weatherRepository;
     private final UserRepository userRepository;
-
-
-    public WeatherResource(WeatherRepository weatherRepository, UserRepository userRepository) {
+    private final MeteoRepository meteoRepository;
+    private final VilleRepository villeRepository;
+    
+    public WeatherResource(WeatherRepository weatherRepository, UserRepository userRepository, MeteoRepository meteoRepository, VilleRepository villeRepository) {
         this.weatherRepository = weatherRepository;
         this.userRepository = userRepository;
+        this.meteoRepository = meteoRepository;
+        this.villeRepository = villeRepository;
     }
 
     /**
@@ -136,6 +145,33 @@ public class WeatherResource {
         List<WeekendInfo> weInfo= weatherRepository.getWeekend(myUser.getLogin());
         return weInfo;
 
+   }
+    @GetMapping("/updateWeather")
+    @Timed
+   public void updateWeather() {
+    	List<Meteo> listMeteo = meteoRepository.findAll();
+    	List<Weather> listWeather = weatherRepository.findAll();
+	   for(Meteo meteo : listMeteo) {
+		   Ville ville = meteo.getVille();
+		   String villeName = ville.getName();
+		   Meteo newmeteo = new Meteo();
+		   newmeteo.setCelsiusAverage(RestConsumer.getMoyenTemp(RestConsumer.restWeather(villeName+", FR")));
+		   String newMeteoWeather = RestConsumer.getMeteo(RestConsumer.restWeather(villeName+", FR"));
+		   newMeteoWeather.toUpperCase().replace(" ", "_");
+		   for(Weather weather : listWeather) {
+			   if(weather.getName().equals(newMeteoWeather)) {
+				   newmeteo.setWeather(weather);
+				   break;
+			   }
+		   }
+		   
+		   newmeteo.setUpdated(LocalDate.now());
+		   newmeteo.setVille(ville);
+		   ville.setMeteo(newmeteo);
+		   meteoRepository.save(newmeteo);
+		   villeRepository.save(ville);
+		   
+	   }
    }
    
 }
