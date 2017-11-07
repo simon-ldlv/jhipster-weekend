@@ -10,10 +10,12 @@
     <include file="config/liquibase/changelog/20171010233210_added_entity_Pratique.xml" relativeToChangelogFile="false"/> 
     <include file="config/liquibase/changelog/20171017153631_added_entity_Meteo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171018092703_added_entity_Weather.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171020092042_added_entity_VillePreferee.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here --> 
     <include file="config/liquibase/changelog/20171010233210_added_entity_constraints_Pratique.xml" relativeToChangelogFile="false"/> 
     <include file="config/liquibase/changelog/20171010231408_added_entity_constraints_Ville.xml" relativeToChangelogFile="false"/> 
     <include file="config/liquibase/changelog/20171017153631_added_entity_constraints_Meteo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171010231820_added_entity_constraints_Activite.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171020092042_added_entity_constraints_VillePreferee.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here --> 
 </databaseChangeLog>

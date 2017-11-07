@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "ville",
+            "otherEntityName": "ville",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "owner",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "villePreferee"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20171020092042",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "ville_preferee",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

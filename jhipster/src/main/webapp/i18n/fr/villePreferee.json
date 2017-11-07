@@ -1,0 +1,22 @@
+{
+    "projetWeekendApp": {
+        "villePreferee" : {
+            "home": {
+                "title": "VillePreferees",
+                "createLabel": "Créer un nouveau Ville Preferee",
+                "createOrEditLabel": "Créer ou éditer un Ville Preferee"
+            },
+            "created": "Un nouveau Ville Preferee a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Ville Preferee avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Ville Preferee avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Ville Preferee {{ id }} ?"
+            },
+            "detail": {
+                "title": "Ville Preferee"
+            },
+            "ville": "Ville",
+            "owner": "Owner"
+        }
+    }
+}

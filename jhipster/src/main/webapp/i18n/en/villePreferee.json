@@ -1,0 +1,22 @@
+{
+    "projetWeekendApp": {
+        "villePreferee" : {
+            "home": {
+                "title": "Ville Preferees",
+                "createLabel": "Create a new Ville Preferee",
+                "createOrEditLabel": "Create or edit a Ville Preferee"
+            },
+            "created": "A new Ville Preferee is created with identifier {{ param }}",
+            "updated": "A Ville Preferee is updated with identifier {{ param }}",
+            "deleted": "A Ville Preferee is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ville Preferee {{ id }}?"
+            },
+            "detail": {
+                "title": "Ville Preferee"
+            },
+            "ville": "Ville",
+            "owner": "Owner"
+        }
+    }
+}

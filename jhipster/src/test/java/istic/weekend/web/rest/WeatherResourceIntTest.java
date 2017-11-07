@@ -4,7 +4,9 @@ import istic.weekend.ProjetWeekendApp;
 
 import istic.weekend.domain.Weather;
 import istic.weekend.repository.MeteoRepository;
+import istic.weekend.repository.PratiqueRepository;
 import istic.weekend.repository.UserRepository;
+import istic.weekend.repository.VillePrefereeRepository;
 import istic.weekend.repository.VilleRepository;
 import istic.weekend.repository.WeatherRepository;
 import istic.weekend.web.rest.errors.ExceptionTranslator;
@@ -54,6 +56,12 @@ public class WeatherResourceIntTest {
     
     @Autowired
     private VilleRepository villeRepository;
+    
+    @Autowired
+    private PratiqueRepository pratiqueRepository;
+    
+    @Autowired
+    private VillePrefereeRepository villePrefereeRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -74,7 +82,7 @@ public class WeatherResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final WeatherResource weatherResource = new WeatherResource(weatherRepository,userRepository, meteoRepository, villeRepository);
+        final WeatherResource weatherResource = new WeatherResource(weatherRepository,userRepository, meteoRepository, villeRepository, pratiqueRepository, villePrefereeRepository);
         this.restWeatherMockMvc = MockMvcBuilders.standaloneSetup(weatherResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

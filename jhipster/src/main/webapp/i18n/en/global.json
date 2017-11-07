@@ -12,6 +12,7 @@
                 "pratique": "Pratique",
                 "meteo": "Meteo",
                 "weather": "Weather",
+                "villePreferee": "Ville Preferee",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -2,14 +2,19 @@ package istic.weekend.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 
+import istic.weekend.domain.Activite;
 import istic.weekend.domain.Meteo;
+import istic.weekend.domain.Pratique;
 import istic.weekend.domain.User;
 import istic.weekend.domain.Ville;
+import istic.weekend.domain.VillePreferee;
 import istic.weekend.domain.Weather;
 import istic.weekend.domain.WeekendInfo;
 import istic.weekend.web.rest.RestConsumer;
 import istic.weekend.repository.MeteoRepository;
+import istic.weekend.repository.PratiqueRepository;
 import istic.weekend.repository.UserRepository;
+import istic.weekend.repository.VillePrefereeRepository;
 import istic.weekend.repository.VilleRepository;
 import istic.weekend.repository.WeatherRepository;
 import istic.weekend.web.rest.util.HeaderUtil;
@@ -25,9 +30,13 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Principal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing Weather.
@@ -44,12 +53,19 @@ public class WeatherResource {
     private final UserRepository userRepository;
     private final MeteoRepository meteoRepository;
     private final VilleRepository villeRepository;
+    private final PratiqueRepository pratiqueRepository;
+    private final VillePrefereeRepository villePrefereeRepository;
+
+
     
-    public WeatherResource(WeatherRepository weatherRepository, UserRepository userRepository, MeteoRepository meteoRepository, VilleRepository villeRepository) {
+    public WeatherResource(WeatherRepository weatherRepository, UserRepository userRepository, MeteoRepository meteoRepository, VilleRepository villeRepository, PratiqueRepository pratiqueRepository, VillePrefereeRepository villePrefereeRepository) {
         this.weatherRepository = weatherRepository;
         this.userRepository = userRepository;
         this.meteoRepository = meteoRepository;
         this.villeRepository = villeRepository;
+        this.pratiqueRepository = pratiqueRepository;
+        this.villePrefereeRepository = villePrefereeRepository;
+
     }
 
     /**
@@ -138,14 +154,29 @@ public class WeatherResource {
     @GetMapping("/weekend")
     @Timed
     public List<WeekendInfo> getWeekend(Principal principal) {
-        log.debug("REST request to get all Weathers");
-        Optional<User> theUserOp = userRepository.findOneByLogin(principal.getName());
-        User myUser = theUserOp.get();
+        log.debug("\nGET WEEKEND INFO !\n");
         
-        List<WeekendInfo> weInfo= weatherRepository.getWeekend(myUser.getLogin());
-        return weInfo;
+        List<ResultSet> myInfos = weatherRepository.getWeekendNative();
+        
+        List<WeekendInfo> listWeekendInfos = new ArrayList<WeekendInfo>();
+        
+        log.info("\n\n --- BEGIN RESULT SET --- \n\n");
+        
+        for(ResultSet result : myInfos) {
+        	try {
+				log.info(result.getString(0));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        
+        log.info("\n\n --- END RESULT SET --- \n\n");
 
+        
+        return listWeekendInfos;
    }
+
     @GetMapping("/updateWeather")
     @Timed
    public void updateWeather() {
