@@ -26,6 +26,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Access;
+import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -153,28 +154,18 @@ public class WeatherResource {
     
     @GetMapping("/weekend")
     @Timed
-    public List<WeekendInfo> getWeekend(Principal principal) {
+    public  List<WeekendInfo> getWeekend(Principal principal) {
         log.debug("\nGET WEEKEND INFO !\n");
         
-        List<ResultSet> myInfos = weatherRepository.getWeekendNative();
-        
-        List<WeekendInfo> listWeekendInfos = new ArrayList<WeekendInfo>();
-        
-        log.info("\n\n --- BEGIN RESULT SET --- \n\n");
-        
-        for(ResultSet result : myInfos) {
-        	try {
-				log.info(result.getString(0));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        List<Object[]> myInfos = weatherRepository.getWeekendNative();
+        List<WeekendInfo> myWeekends = new ArrayList<WeekendInfo>();
+        String ret = "";
+        for(Object[] obj : myInfos) {
+        	WeekendInfo weekend = new WeekendInfo((String) obj[0], (String) obj[1], (String) obj[2], 
+        									  (Double) obj[3], (Double) obj[4], (Double) obj[5]);
+        	myWeekends.add(weekend);
         }
-        
-        log.info("\n\n --- END RESULT SET --- \n\n");
-
-        
-        return listWeekendInfos;
+        return myWeekends;
    }
 
     @GetMapping("/updateWeather")

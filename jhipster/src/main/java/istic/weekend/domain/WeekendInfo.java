@@ -23,6 +23,10 @@ public class WeekendInfo {
 	}
 	
 	
+	public WeekendInfo() {
+	}
+
+
 	public String getVilleName() {
 		return villeName;
 	}
