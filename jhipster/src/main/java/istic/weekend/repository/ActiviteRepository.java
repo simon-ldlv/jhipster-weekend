@@ -13,7 +13,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface ActiviteRepository extends JpaRepository<Activite, Long> {
-    @Query("select distinct activite from Activite activite left join fetch activite.weathers")
+    @Query("select distinct activite from Activite activite left join fetch activite.weathers order by activite.name")
     List<Activite> findAllWithEagerRelationships();
 
     @Query("select activite from Activite activite left join fetch activite.weathers where activite.id =:id")

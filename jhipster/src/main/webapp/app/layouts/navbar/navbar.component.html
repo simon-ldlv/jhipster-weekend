@@ -18,6 +18,13 @@
                     </span>
                 </a>
             </li>
+                <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a class="nav-link"routerLink="weekend" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <span>Get my Week-End!</span>
+                    </a>
+                </li>
+
+                
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
@@ -65,6 +72,7 @@
                             <span jhiTranslate="global.menu.entities.villePreferee">Ville Preferee</span>
                         </a>
                     </li>
+
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
@@ -118,6 +126,11 @@
                             <span jhiTranslate="global.menu.admin.apidocs">API</span>
                         </a>
                     </li>
+                    <li>
+                            <a class="dropdown-item" routerLink='./api/updateWeather' routerLinkActive="active" (click)="collapseNavbar()">
+                                <span>Update weather (doesn't work - please use swaggers to update) </span>
+                            </a>
+                        </li>
                     <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
                     <li *ngIf="!inProduction">
                         <a class="dropdown-item" href='./h2-console' target="_tab" (click)="collapseNavbar()">
@@ -125,6 +138,8 @@
                             <span jhiTranslate="global.menu.admin.database">Database</span>
                         </a>
                     </li>
+
+                    
                 </ul>
             </li>
             <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages">

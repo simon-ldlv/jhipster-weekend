@@ -20,7 +20,7 @@
                 <option [ngValue]="villeOption.id === villePreferee.ville?.id ? villePreferee.ville : villeOption" *ngFor="let villeOption of villes; trackBy: trackVilleById">{{villeOption.name}}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="form-group">
             <label class="form-control-label" jhiTranslate="projetWeekendApp.villePreferee.owner" for="field_owner">Owner</label>
             <select class="form-control" id="field_owner" name="owner" [(ngModel)]="villePreferee.owner" >
                 <option [ngValue]="null"></option>

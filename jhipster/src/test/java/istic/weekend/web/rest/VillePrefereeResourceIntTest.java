@@ -3,6 +3,7 @@ package istic.weekend.web.rest;
 import istic.weekend.ProjetWeekendApp;
 
 import istic.weekend.domain.VillePreferee;
+import istic.weekend.repository.UserRepository;
 import istic.weekend.repository.VillePrefereeRepository;
 import istic.weekend.web.rest.errors.ExceptionTranslator;
 
@@ -39,6 +40,9 @@ public class VillePrefereeResourceIntTest {
 
     @Autowired
     private VillePrefereeRepository villePrefereeRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -59,7 +63,7 @@ public class VillePrefereeResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final VillePrefereeResource villePrefereeResource = new VillePrefereeResource(villePrefereeRepository);
+        final VillePrefereeResource villePrefereeResource = new VillePrefereeResource(villePrefereeRepository, userRepository);
         this.restVillePrefereeMockMvc = MockMvcBuilders.standaloneSetup(villePrefereeResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

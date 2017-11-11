@@ -117,6 +117,8 @@ public class PratiqueResource {
 	                result = pratiqueRepository.save(pratique);
 	            }
 	    	}  
+        }else {
+        	return ResponseUtil.wrapOrNotFound(Optional.ofNullable(result));
         }
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, pratique.getId().toString()))

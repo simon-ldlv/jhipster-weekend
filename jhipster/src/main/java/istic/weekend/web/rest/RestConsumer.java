@@ -26,6 +26,7 @@ public class RestConsumer {
 			JSONArray objList_l = null;
 			
 		  try {
+			  // http://api.openweathermap.org/data/2.5/forecast?q=RENNES&units=metric&appid=0b1132d225995e5fa07975897eeea98a
 			ResourceBundle bundle = ResourceBundle.getBundle("istic.weekend.web.rest.properties.ressource");
 			String apiUrl_l= bundle.getString("rest.url");
 			String apiKey_l= bundle.getString("rest.api.password");

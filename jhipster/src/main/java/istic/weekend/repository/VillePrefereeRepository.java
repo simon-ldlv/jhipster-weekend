@@ -23,11 +23,12 @@ public interface VillePrefereeRepository extends JpaRepository<VillePreferee, Lo
     @Query("select ville_preferee from VillePreferee ville_preferee where ville_preferee.owner.login = ?#{principal.username}")
     List<VillePreferee> findByOwnerIsCurrentUser();
     
+    
     @Query("select ville_preferee from VillePreferee ville_preferee where ville_preferee.id = :id and ville_preferee.owner.login = ?#{principal.username}")
     VillePreferee findOneByOwnerIsCurrentUser(@Param("id")Long id);
     
     @Query("select ville_preferee from VillePreferee ville_preferee where ville_preferee.ville = :ville and ville_preferee.owner = :owner")
-    VillePreferee findOneByActiviteByOwner(@Param("ville")Ville ville, @Param("owner")User owner);
+    VillePreferee findOneByVilleByOwner(@Param("ville")Ville ville, @Param("owner")User owner);
     
     @Transactional
     @Modifying

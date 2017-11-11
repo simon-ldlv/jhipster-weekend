@@ -21,6 +21,7 @@ public interface PratiqueRepository extends JpaRepository<Pratique, Long> {
     @Query("select pratique from Pratique pratique where pratique.owner.login = ?#{principal.username}")
     List<Pratique> findByOwnerIsCurrentUser();
     
+    
     @Query("select pratique from Pratique pratique where pratique.id = :id and pratique.owner.login = ?#{principal.username}")
     Pratique findOneByOwnerIsCurrentUser(@Param("id")Long id);
     
@@ -31,6 +32,8 @@ public interface PratiqueRepository extends JpaRepository<Pratique, Long> {
     @Modifying
     @Query("DELETE FROM Pratique pratique WHERE pratique.id = :idPrat AND pratique.owner = :user")
 	void deleteForUser(@Param("idPrat")Long idPrat, @Param("user")User user);
+    
+    
 
     
 }

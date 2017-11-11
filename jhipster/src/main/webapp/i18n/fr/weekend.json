@@ -1,0 +1,26 @@
+{
+    "projetWeekendApp": {
+        "weekend" : {
+            "home": {
+                "title": "Weekend",
+                "createLabel": "Créer un nouveau Weekend",
+                "createOrEditLabel": "Créer ou éditer un Weekend"
+            },
+            "created": "Un nouveau Weekend a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Weekend avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Weekend avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Weekend {{ id }} ?"
+            },
+            "detail": {
+                "title": "Weekend"
+            },
+            "villeName": "VilleName",
+            "activiteName": "ActiviteName",
+            "weatherName": "WeatherName",
+            "celsiusMin": "CelsiusMin",
+            "celsiusMax":"CelsiusMax",
+            "celsiusAverage": "CelsiusAverage"
+        }
+    }
+}

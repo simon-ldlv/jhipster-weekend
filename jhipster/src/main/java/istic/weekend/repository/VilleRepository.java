@@ -13,7 +13,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface VilleRepository extends JpaRepository<Ville, Long> {
-    @Query("select distinct ville from Ville ville left join fetch ville.activites")
+    @Query("select distinct ville from Ville ville left join fetch ville.activites order by ville.name")
     List<Ville> findAllWithEagerRelationships();
 
     @Query("select ville from Ville ville left join fetch ville.activites where ville.id =:id")
