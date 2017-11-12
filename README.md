@@ -5,6 +5,12 @@ jhipster-weekend
     Alan MARZIN
 *************
 
+
+ATTENTION : 
+    VOUS DEVEZ SUPPRIMEZ LA BASE H2 AVANT DE POUSUIVRE, C'EST A DIRE LES FICHIERS :
+       jhipster/target/h2db/db/projetweekend.mv.db
+       jhipster/target/h2db/db/projetweekend.trace.db
+
 1 - Start the docker container with :
     sudo docker container start jhipster
 
