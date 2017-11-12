@@ -180,10 +180,16 @@ public class WeatherResource {
 
 	@GetMapping("/updateWeather")
     @Timed
-   public ResponseEntity<UpdateWeatherOutput> updateWeather() {
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+   public List<UpdateWeatherOutput> updateWeather() {
         log.debug("\nREST Consumer to OpenWeatherMap\n");
+        List<UpdateWeatherOutput> listUpdate = new ArrayList<UpdateWeatherOutput>();
         UpdateWeatherOutput updateOut = new UpdateWeatherOutput();
-        
+		updateOut.setNbError(0);
+		updateOut.setLibelle("SALUT");
+		
+		listUpdate.add(updateOut);
+
     	List<Ville> listVille = villeRepository.findAll();
     	List<Weather> listWeather = weatherRepository.findAll();
     	for(Ville villeCurrent : listVille) {
@@ -196,7 +202,7 @@ public class WeatherResource {
 
 			   String newMeteoWeather = RestConsumer.getMeteo(RestConsumer.restWeather(villeName+", FR"));
 			   // String newMeteoWeather = "CLOUDS";
-		
+			   log.debug("\n----->  NewMeteoWeather = "+newMeteoWeather+"\n");
 			   newMeteoWeather = newMeteoWeather.toUpperCase().replace(" ", "_");
 			   for(Weather weather : listWeather) {
 			        log.debug("\nCompare : ["+weather.getName()+"] == ["+newMeteoWeather+"] \n");
@@ -212,17 +218,16 @@ public class WeatherResource {
 			   meteoRepository.save(newmeteo);
 			   villeRepository.save(villeCurrent);
 			   
-			   updateOut.setCode(0);
 			   updateOut.setLibelle("SUCCESS");
 		   } catch (Exception ex) {
 			   log.info(ex.getMessage());
 			   
-			   updateOut.setCode(-1);
-			   updateOut.setLibelle("ECHEC : "+ex.getMessage());
+			   updateOut.setNbError(updateOut.getNbError()+1);;
+			   updateOut.setLibelle("FAIL : "+ex.getMessage());
 		   }
 	   }
 	
-       return ResponseUtil.wrapOrNotFound(Optional.ofNullable(updateOut));
+       return listUpdate;
    }
    
 }

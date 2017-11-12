@@ -1,22 +1,25 @@
+<script type="text/javascript" src="dateFormat.js"></script>
 <div>
     <h2>
         <span jhiTranslate="projetWeekendApp.weekend.home.title">Weekends</span>
-
+    
     </h2>
     <jhi-alert></jhi-alert>
-    <div class="row">
-    </div>
+   <div *ngIf="weekends.length > 0" >
+        <div class="row">
+            Ci-dessous, vous trouverez des activités pour le week-end prochain que nous avons généré en 
+            fonction de vos activités et de vos villes préférées.
+        </div>
     <br/>
     <div class="table-responsive" *ngIf="weekends">
+        <p>Le samedi {{this.dateSaturday}} : </p>
         <table class="table table-striped">
             <thead>
             <tr>
             <th>Ville</th>
             <th>Activité</th>
             <th>Météo</th>
-            <th>Celsius Min</th>
-            <th>Celsius Max</th>
-            <th>Celsius Moyen</th>
+            <th>Température C° moyenne</th>
             <th></th>
             </tr>
             </thead>
@@ -25,11 +28,17 @@
                 <td>{{weekend.villeName}}</td>
                 <td>{{weekend.activiteName}}</td>                
                 <td>{{weekend.weatherName}}</td>
-                <td>{{weekend.celsiusMin}}</td>
-                <td>{{weekend.celsiusMax}}</td>
                 <td>{{weekend.celsiusAverage}}</td>
             </tr>
             </tbody>
         </table>
     </div>
+</div>
+<div *ngIf="weekends.length <= 0">
+ <p>
+     Désolé, nous n'avons rien à vous proposer pour le week-end du {{this.dateSaturday}} :( </p>
+ <p>Peut-être que vous devriez ajouter de nouvelles villes préférées ou ajouter une activité supplémentaire ? 
+ </p>
+
+</div>
 </div>

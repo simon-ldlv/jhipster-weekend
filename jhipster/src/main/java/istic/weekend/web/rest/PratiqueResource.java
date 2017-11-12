@@ -156,7 +156,6 @@ public class PratiqueResource {
         Pratique pratique = null;
     	if(SecurityUtils.isCurrentUserInRole("ROLE_ADMIN")) {
     		pratique = pratiqueRepository.findOne(id);
-
     	} else {
     		pratique = pratiqueRepository.findOneByOwnerIsCurrentUser(id);
     	}

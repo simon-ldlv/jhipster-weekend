@@ -7,6 +7,8 @@ import { ProjetWeekendMeteoModule } from './meteo/meteo.module';
 import { ProjetWeekendWeatherModule } from './weather/weather.module';
 import { ProjetWeekendVillePrefereeModule } from './ville-preferee/ville-preferee.module';
 import { ProjetWeekendWeekendModule } from './weekend/weekend.module';
+import { ProjetWeekendUpdateWeatherModule } from './updateWeather/updateWeather.module';
+
 
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
@@ -19,6 +21,7 @@ import { ProjetWeekendWeekendModule } from './weekend/weekend.module';
         ProjetWeekendWeatherModule,
         ProjetWeekendVillePrefereeModule,
         ProjetWeekendWeekendModule,
+        ProjetWeekendUpdateWeatherModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

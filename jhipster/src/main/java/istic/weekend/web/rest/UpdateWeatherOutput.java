@@ -2,24 +2,24 @@ package istic.weekend.web.rest;
 
 public class UpdateWeatherOutput {
 	
-	private Integer code;
+	private Integer nbError;
 	private String libelle;
 	
 	public UpdateWeatherOutput() {
 		
 	}
 
-	public UpdateWeatherOutput(Integer code, String libelle) {
-		this.code = code;
+	public UpdateWeatherOutput(Integer nbError, String libelle) {
+		this.nbError = nbError;
 		this.libelle = libelle;
 	}
 	
-	public Integer getCode() {
-		return code;
+	public Integer getNbError() {
+		return nbError;
 	}
 
-	public void setCode(Integer code) {
-		this.code = code;
+	public void setNbError(Integer nbError) {
+		this.nbError = nbError;
 	}
 
 	public String getLibelle() {

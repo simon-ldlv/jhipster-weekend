@@ -1,0 +1,22 @@
+{
+    "projetUpdateWeatherApp": {
+        "updateWeather" : {
+            "home": {
+                "title": "UpdateWeather",
+                "createLabel": "Créer un nouveau UpdateWeather",
+                "createOrEditLabel": "Créer ou éditer un UpdateWeather"
+            },
+            "created": "Un nouveau Weekend a été créé avec l'identifiant {{ param }}",
+            "updated": "Le UpdateWeather avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le UpdateWeather avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le UpdateWeather {{ id }} ?"
+            },
+            "detail": {
+                "title": "UpdateWeather"
+            },
+            "nbError": "NbError",
+            "libelle": "Libelle"
+        }
+    }
+}

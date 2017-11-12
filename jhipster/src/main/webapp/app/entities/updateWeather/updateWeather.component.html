@@ -1,0 +1,31 @@
+<div>
+    <h2>
+        <span>Update Weather</span>
+
+    </h2>
+    <jhi-alert></jhi-alert>
+   <div>
+        <div class="row">
+            Mise à jour des météos de chaque villes ... veuillez patienter ... 
+        </div>
+        <br/>
+        <div class="table-responsive" *ngIf="updateWeathers">
+            <p>Le samedi {{this.dateSaturday}} : </p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                <th>Nombre d'erreurs</th>
+                <th>Libellé de la réponse</th>
+                <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let updateWeather of updateWeathers">
+                    <td>{{updateWeather.nbError}}</td>
+                    <td>{{updateWeather.libelle}}</td>                
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
