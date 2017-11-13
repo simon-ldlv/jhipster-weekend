@@ -174,7 +174,7 @@ public class RestConsumer {
 		    Calendar calendar = Calendar.getInstance();
 		    calendar.setTimeInMillis(unix*1000);
 		    //SSystem.out.println(calendar.getTime().toString());
-		    if((calendar.get(Calendar.DAY_OF_WEEK)==Calendar.FRIDAY)
+		    if((calendar.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY)
 		    		&&((calendar.get(Calendar.HOUR_OF_DAY)>=9)
 		    				&&(calendar.get(Calendar.HOUR_OF_DAY)<=21))) {
 		    	return true;
@@ -186,7 +186,7 @@ public class RestConsumer {
 		    Calendar calendar = Calendar.getInstance();
 		    calendar.setTimeInMillis(unix*1000);
 		    //SSystem.out.println(calendar.getTime().toString());
-		    if((calendar.get(Calendar.DAY_OF_WEEK)==Calendar.FRIDAY)
+		    if((calendar.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY)
 		    		&&(calendar.get(Calendar.HOUR_OF_DAY)<=12)) {
 		    	return true;
 		    }

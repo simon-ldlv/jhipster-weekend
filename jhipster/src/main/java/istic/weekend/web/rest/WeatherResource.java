@@ -35,6 +35,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -186,12 +187,20 @@ public class WeatherResource {
         List<UpdateWeatherOutput> listUpdate = new ArrayList<UpdateWeatherOutput>();
         UpdateWeatherOutput updateOut = new UpdateWeatherOutput();
 		updateOut.setNbError(0);
-		updateOut.setLibelle("SALUT");
+		updateOut.setLibelle("UpdateWeather");
 		
 		listUpdate.add(updateOut);
 
     	List<Ville> listVille = villeRepository.findAll();
     	List<Weather> listWeather = weatherRepository.findAll();
+    	Calendar calendar = Calendar.getInstance();
+    	if((calendar.get(Calendar.DAY_OF_WEEK)==Calendar.SUNDAY)){
+    		log.error("Impossible de mettre à jour la météo le dimanche");
+    		updateOut.setNbError(-1);
+    		updateOut.setLibelle("ERROR : update impossible car dimanche.");
+    		return listUpdate;
+    	}
+    	else {
     	for(Ville villeCurrent : listVille) {
 
 		   	try {
@@ -228,6 +237,8 @@ public class WeatherResource {
 	   }
 	
        return listUpdate;
+    	}
+    	
    }
    
 }
