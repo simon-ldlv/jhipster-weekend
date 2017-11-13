@@ -8,51 +8,57 @@ jhipster-weekend
 
 ATTENTION : #DockerDuPauvre
 
-1. Première étape : lancez un terminal avec la commande : docker image pull jhipster/jhipster:master
+ 
+0. Obtenir le repository Github : https://github.com/simon-ldlv/jhipster-weekend 
+
+1. Télécharger l'image jhipster avec la commande : 
+	docker image pull jhipster/jhipster:master
+
 2. Lancez ensuite la commande suivante en remplaçant le "pathToTheProject" par la racine du repo GIT : 
-	docker container run --name jhipsterProd -v /home/marzin/Bureau/jhipster-weekend-master/jhipster:/home/jhipster/app -v ~/.m2:/home/jhipster/.m2 -p 8080:8080 -p 9000:9000 -p 3001:3001 -d -t jhipster/jhipster
+	docker container run --name jhipsterDeploy -v <PathToTheRepo>/jhipster-weekend-master/jhipster:/home/jhipster/app -v ~/.m2:/home/jhipster/.m2 -p 8080:8080 -p 9000:9000 -p 3001:3001 -d -t jhipster/jhipster
 
-3. sudo docker container start jhipster
+3. Démarrer le container avec : 
+	sudo docker container start jhipsterDeploy
 
-2- Connect to the container
-    sudo docker container exec -it jhipster bash
+4. Connect to the container
+    	sudo docker container exec -it jhipster bash
 
-2.5. lancez la commande : jhipster
-2.6. N'écraser aucun fichier. Répondez "N" pour toutes les questions.
+5. Pour générer l'arborescence du projet, lancez la commande : 
+	jhipster
+	ATTENTION : N'écraser aucun fichier. Répondez "N" pour toutes les questions ! Attendez la fin de la génération.
 
-3- Compile web app client : 
-    npm start
+6. Compilez la web app client : 
+    	npm start
 
-4- Compile and run the server : 
-    ./mvnw
+7. Compilez and executez le serveur : 
+    	./mvnw
 
-5- Connect to the browser at : http://localhost:8080
+8. Allez à sur votre navigateur à l'adresse : http://localhost:8080
 
-6- Sign in with ID 'admin' and password 'admin'
+9. Connectez vous avec l'ID 'admin' and le mot de passe 'admin'
 
-7- Go to Adminsitration -> Database 
-   Click on "Connect"
-   Copy and Paste the content of the file "src/data_weather.sql"
-   Run the SQL script (the action fills the database)
+10. Allez dans Administration -> Database 
+   Cliquez on "Connect"
+   Copiez le contenu du fichier "<PathToTheRepo>/jhipster-weekend-master/jhipster/src/data_weather.sql"
+   Collez le contenu dans la fenêtre d'administration de la bdd
 
-8- Go to Administration -> Update Weather
+11. Allez ensuite à Administration -> Update Weather
 
-9- Wait while the process of update.
-   You must to see 0 value in NbError
+12. Attendez quelque instant pendant la mise à jour de la météo (ne marche pas le dimanche)
 
-10- Disconnect the admin account.
+13. Déconnectez vous du compte administrateur 
 
-11- Sign in with ID "user" and password "user"
+14. Vous pouvez dorénavant vous connectez en mode utilisateur avec l'id 'user' et le mot de passe 'user'
 
-12- Go to Entities -> Pratique
-    Add some Acitivité in your list 
+15. Allez à Entities -> Pratique
+    Ajoutez vous quelques activité 
 
-13- Go to Entities -> Ville Préférées
-    Add some Ville in your list
+16. Allez à Entities -> Ville Préférées
+    Ajoutez quelque ville à vos ville préférées
 
-14- Go to "Get My Week-end!"
+17. Vous pouvez enfin profitez de votre week end en allant à "Get My Week-end!"
 
-15- You can see what you can do the next week-end (saturday only).
+18. Vous pouvez voir ce que vous pouvez faire le week end porchain (seulement le samedi).
 
 
     
