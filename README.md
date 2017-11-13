@@ -6,16 +6,19 @@ jhipster-weekend
 *************
 
 
-ATTENTION : 
-    VOUS DEVEZ SUPPRIMEZ LA BASE H2 AVANT DE POUSUIVRE, C'EST A DIRE LES FICHIERS :
-       jhipster/target/h2db/db/projetweekend.mv.db
-       jhipster/target/h2db/db/projetweekend.trace.db
+ATTENTION : #DockerDuPauvre
 
-1 - Start the docker container with :
-    sudo docker container start jhipster
+1. Première étape : lancez un terminal avec la commande : docker image pull jhipster/jhipster:master
+2. Lancez ensuite la commande suivante en remplaçant le "pathToTheProject" par la racine du repo GIT : 
+	docker container run --name jhipsterProd -v /home/marzin/Bureau/jhipster-weekend-master/jhipster:/home/jhipster/app -v ~/.m2:/home/jhipster/.m2 -p 8080:8080 -p 9000:9000 -p 3001:3001 -d -t jhipster/jhipster
+
+3. sudo docker container start jhipster
 
 2- Connect to the container
     sudo docker container exec -it jhipster bash
+
+2.5. lancez la commande : jhipster
+2.6. N'écraser aucun fichier. Répondez "N" pour toutes les questions.
 
 3- Compile web app client : 
     npm start

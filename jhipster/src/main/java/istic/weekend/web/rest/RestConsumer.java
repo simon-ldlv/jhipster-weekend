@@ -20,16 +20,20 @@ import org.json.JSONObject;
 
 public class RestConsumer {
 		
-		
+		final static String restUrl = "api.openweathermap.org/data/2.5/forecast?q=";
+		final static String restApiPassword = "0b1132d225995e5fa07975897eeea98a";
+	
 		public static JSONArray restWeather (String city_p) {
 			
 			JSONArray objList_l = null;
 			
 		  try {
 			  // http://api.openweathermap.org/data/2.5/forecast?q=RENNES&units=metric&appid=0b1132d225995e5fa07975897eeea98a
-			ResourceBundle bundle = ResourceBundle.getBundle("istic.weekend.web.rest.properties.ressource");
-			String apiUrl_l= bundle.getString("rest.url");
-			String apiKey_l= bundle.getString("rest.api.password");
+			//ResourceBundle bundle = ResourceBundle.getBundle("istic.weekend.web.rest.properties.ressource");
+			//String apiUrl_l= bundle.getString("rest.url");
+			//String apiKey_l= bundle.getString("rest.api.password");
+			  String apiUrl_l = restUrl;
+			  String apiKey_l = restApiPassword;
 			String urlFull_l = "http://"+apiUrl_l+city_p+"&units=metric&appid="+apiKey_l;
 			URL url = new URL(urlFull_l);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
